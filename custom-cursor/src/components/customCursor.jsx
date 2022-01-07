@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [animation, setAnimation] = useState(false);
 
   useEffect(() => {
     document.addEventListener("mousemove", (event) => {
@@ -11,10 +12,25 @@ function CustomCursor() {
     });
   }, []);
 
+  useEffect(() => {
+    const mouseClickHandler = () => {
+      setAnimation(true);
+      const timeOutId = setTimeout(() => {
+        setAnimation(false);
+      }, 100);
+      return () => clearTimeout(timeOutId);
+    };
+    document.addEventListener("click", mouseClickHandler);
+
+    return () => {
+      document.removeEventListener("click", mouseClickHandler);
+    };
+  }, []);
+
   return (
     <>
       <div
-        className="cursor ring"
+        className={`cursor ring ${animation ? "animate" : ""}`}
         style={{ left: position.x, top: position.y }}
       />
       <div
