@@ -17,6 +17,10 @@ function CustomCursor() {
         className="cursor ring"
         style={{ left: position.x, top: position.y }}
       />
+      <div
+        className="cursor dot"
+        style={{ left: position.x, top: position.y }}
+      />
     </>
   );
 }
