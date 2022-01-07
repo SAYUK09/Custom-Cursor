@@ -16,9 +16,7 @@ function CustomCursor() {
       <div
         className="cursor ring"
         style={{ left: position.x, top: position.y }}
-      >
-        Cursor
-      </div>
+      />
     </>
   );
 }
